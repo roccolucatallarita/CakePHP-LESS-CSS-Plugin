@@ -14,7 +14,7 @@ Then you will need to enable the plugin from within your app boostrap file (app/
 
 	CakePlugin::load('Less');
 	
-Then in your AppController or your Controller add the helpers to your helpers array like so:
+Then in your AppController or your Controller add the helper to your helpers array like so:
 
 	public $helpers = array('Less.Less');
 	
