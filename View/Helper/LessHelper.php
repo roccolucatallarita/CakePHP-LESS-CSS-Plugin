@@ -79,13 +79,10 @@ class LessHelper extends AppHelper
 			} else {
 				$path = $files[$k];
 			}
-
-			$data[$path] = file_get_contents($path);
+			$data[$path] = $this->__compileLess($path);   
 		}
 		
 		foreach ($data as $k => $css) {
-			$css = $this->__compileLess($css);
-			
 			if ($options['minify']) {
 				$css = $this->__minifyCss($css);
 			}
@@ -119,14 +116,14 @@ class LessHelper extends AppHelper
 	/**
 	 * Invokes the LessPHP class and returns the compiled input
 	 * 
-	 * @param string $input
+	 * @param string $path
 	 * @return string
 	 * @access private
 	 */
-	private function __compileLess($input)
+	private function __compileLess($path)
 	{
-		$less = new lessc();
-		return $less->parse($input);
+		$lessc = new lessc($path);
+		return $lessc->parse();
 	}
 	
 	/**
